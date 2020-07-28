@@ -25,6 +25,7 @@ async function getJoke() {
     try {
        const response = await fetch(apiUrl);
        const data = await response.json();
+         
        // Reduce font size for long jokes
        if (data.joke.length > 180) {
          jokeText.classList.add('long-long-joke');
@@ -34,8 +35,16 @@ async function getJoke() {
          jokeText.classList.remove('long-joke')
          jokeText.classList.remove('long-long-joke')
        }
-       jokeText.innerText = data.joke;
-       removeLoadingSpinner();
+       
+       let textCheck = data.joke.includes("Alzheimer");
+       if (textCheck == true) {
+        console.log('FOUND IT');
+        getJoke();
+       } else {
+         console.log('fine');
+        jokeText.innerText = data.joke;
+        removeLoadingSpinner();
+        }
     } catch (error) {
       getJoke();
     }
