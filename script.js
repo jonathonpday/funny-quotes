@@ -38,10 +38,8 @@ async function getJoke() {
        
        let textCheck = data.joke.includes("Alzheimer");
        if (textCheck == true) {
-        console.log('FOUND IT');
         getJoke();
        } else {
-         console.log('fine');
         jokeText.innerText = data.joke;
         removeLoadingSpinner();
         }
